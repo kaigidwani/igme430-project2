@@ -3,101 +3,128 @@ const React = require('react');
 const { useState, useEffect } = React;
 const { createRoot } = require('react-dom/client');
 
-const handleDomo = (e, onDomoAdded) => {
+// TODO:
+    // - test that this works
+    //    - Resolve error with length property of characterList
+    // - Replace list items with real assets
+    // - Figure out CSS for the items to display them
+
+const handleCharacter = (e, onCharacterAdded) => {
     e.preventDefault();
     helper.hideError();
 
-    const name = e.target.querySelector('#domoName').value;
-    const age = e.target.querySelector('#domoAge').value;
-    const faceBool = e.target.querySelector('#domoFace').checked;
+    const name = e.target.querySelector('#characterName').value;
+    const faceList = e.target.querySelector('#characterFace');
+    const skinColorList = e.target.querySelector('#characterSkinColor');
+    const hairList = e.target.querySelector('#characterHair');
+    const topList = e.target.querySelector('#characterTop');
+    const bottomsList = e.target.querySelector('#characterBottoms');
+    // best way to copy what picrew does is have a ul
+    // and check which of the li has the class "selected"
 
-    if(!name || !age) {
-        helper.handleError('All fields are required');
+    if(!name) {
+        helper.handleError('Name is required');
         return false;
     }
 
+    // Get selected items from each list
+    const face = faceList.querySelector('#selected');
+    console.log(face.data);
+    const skinColor = skinColorList.querySelector('#selected');
+    const hair = hairList.querySelector('#selected');
+    const top = topList.querySelector('#selected');
+    const bottoms = bottomsList.querySelector('#selected');
 
-    // Set the face to either the cute face or the regular face
-    
-    let face;
-    // If true, cute was selected
-    if (faceBool) {
-        face = './assets/img/face.png';
-    } else { // Otherwise set to default face
-        face = '/assets/img/domoface.jpeg';
-    }
-
-    helper.sendPost(e.target.action, {name, age, face}, onDomoAdded);
+    helper.sendPost(e.target.action, {name, face, skinColor, hair, top, bottoms}, onCharacterAdded);
     return false;
 }
 
-const DomoForm = (props) => {
+const CharacterForm = (props) => {
     return (
-        <form id="domoForm"
-            onSubmit={(e) => handleDomo(e, props.triggerReload)}
-            name="domoForm"
+        <form id="characterForm"
+            onSubmit={(e) => handleCharacter(e, props.triggerReload)}
+            name="characterForm"
             action="/maker"
             method="POST"
-            className="domoForm"
+            className="characterForm"
         >
             <label htmlFor="name">Name: </label>
-            <input id="domoName" type="text" name="name" placeholder="Domo Name" />
-            <label htmlFor="age">Age: </label>
-            <input id="domoAge" type="number" min="0" name="age" />
-            <label htmlFor="face">Cute: </label>
-            <input id="domoFace" type="checkbox" name="face" />
-            <input className="makeDomoSubmit" type="submit" value="Make Domo" />
+            <input id="characterName" type="text" name="name" placeholder="Character Name" />
+            <ul id="characterSkinColor" name="skinColor">
+                <li id="selected" data="./assets/img/face.png"></li>
+                <li id="" data="./assets/img/domoface.png"></li>
+            </ul>
+            <ul id="characterFace" name="face">
+                <li id="selected" data="./assets/img/face.png"></li>
+                <li id="" data="./assets/img/domoface.png"></li>
+            </ul>
+            <ul id="characterHair" name="hair">
+                <li id="selected" data="./assets/img/face.png"></li>
+                <li id="" data="./assets/img/domoface.png"></li>
+            </ul>
+            <ul id="characterTop" name="top">
+                <li id="selected" data="./assets/img/face.png"></li>
+                <li id="" data="./assets/img/domoface.png"></li>
+            </ul>
+            <ul id="characterBottoms" name="bottoms">
+                <li id="selected" data="./assets/img/face.png"></li>
+                <li id="" data="./assets/img/domoface.png"></li>
+            </ul>
+            <input className="makeCharacterSubmit" type="submit" value="Make Character" />
         </form>
     );
 };
 
-const DomoList = (props) => {
-    const [domos, setDomos] = useState(props.domos);
+const CharacterList = (props) => {
+    const [characters, setCharacters] = useState(props.characters);
 
     useEffect(() => {
-        const loadDomosFromServer = async () => {
-            const response = await fetch('/getDomos');
+        const loadCharactersFromServer = async () => {
+            const response = await fetch('/getCharacters');
             const data = await response.json();
-            setDomos(data.domos);
+            setCharacters(data.characters);
         };
-        loadDomosFromServer();
-    }, [props.reloadDomos]);
+        loadCharactersFromServer();
+    }, [props.reloadCharacters]);
 
-    if(domos.length === 0) {
+    if(characters.length === 0) {
         return (
-            <div className="domoList">
-                <h3 className="emptyDomo">No Domos Yet!</h3>
+            <div className="characterList">
+                <h3 className="emptyCharacter">No Characters Yet!</h3>
             </div>
         );
     }
 
-    const domoNodes = domos.map(domo => {
+    const characterNodes = characters.map(character => {
         return (
-            <div key={domo.id} className="domo">
-                <img src={domo.face} alt="domo face" className="domoFace" />
-                <h3 className="domoName">Name: {domo.name}</h3>
-                <h3 className="domoAge">Age: {domo.age}</h3>
+            <div key={character.id} className="character">
+                <h3 className="characterName">Name: {character.name}</h3>
+                <img src={character.skinColor} alt="character skin" className="characterSkinColor" />
+                <img src={character.face} alt="character face" className="characterFace" />
+                <img src={character.hair} alt="character hair" className="characterHair" />
+                <img src={character.top} alt="character top" className="characterTop" />
+                <img src={character.bottoms} alt="character bottoms" className="characterBottoms" />
             </div>
         );
     });
 
     return (
-        <div className="domoList">
-            {domoNodes}
+        <div className="characterList">
+            {characterNodes}
         </div>
     );
 };
 
 const App = () => {
-    const [reloadDomos, setReloadDomos] = useState(false);
+    const [reloadCharacters, setReloadCharacters] = useState(false);
 
     return (
         <div>
-            <div id="makeDomo">
-                <DomoForm triggerReload={() => setReloadDomos(!reloadDomos)} />
+            <div id="makeCharacter">
+                <CharacterForm triggerReload={() => setReloadCharacters(!reloadCharacters)} />
             </div>
-            <div id="domos">
-                <DomoList domos={[]} reloadDomos={reloadDomos} />
+            <div id="characters">
+                <CharacterList characters={[]} reloadCharacters={reloadCharacters} />
             </div>
         </div>
     );

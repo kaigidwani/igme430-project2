@@ -23,14 +23,14 @@ const makeCharacter = async (req, res) => {
   try {
     const newCharacter = new Character(characterData);
     await newCharacter.save();
-    return res.status(201).json({ 
-      name: newCharacter.name, 
-      age: newCharacter.age, 
+    return res.status(201).json({
+      name: newCharacter.name,
+      age: newCharacter.age,
       face: newCharacter.face,
       skinColor: newCharacter.skinColor,
       hair: newCharacter.hair,
       top: newCharacter.top,
-      bottoms: newCharacter.bottoms 
+      bottoms: newCharacter.bottoms,
     });
   } catch (err) {
     console.log(err);
