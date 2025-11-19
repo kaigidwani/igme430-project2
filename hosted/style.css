@@ -221,6 +221,8 @@ nav:nth-child(1) {
     background-color: #66bfff;
 }
 
+/* Commenting out face icon CSS used for Domo.
+   Replace this with CSS for each component of the character.
 img.characterFace {
     margin-left: 25px;
     margin-right: 10px;
@@ -229,7 +231,7 @@ img.characterFace {
     border-radius: 4px;
     margin-top:10px;
     float:left;
-}
+} */
 
 h3.emptyCharacter {
     width: 400px;
