@@ -14,11 +14,11 @@ const handleCharacter = (e, onCharacterAdded) => {
     helper.hideError();
 
     const name = e.target.querySelector('#characterName').value;
-    const faceList = e.target.querySelector('#characterFace');
-    const skinColorList = e.target.querySelector('#characterSkinColor');
-    const hairList = e.target.querySelector('#characterHair');
-    const topList = e.target.querySelector('#characterTop');
-    const bottomsList = e.target.querySelector('#characterBottoms');
+    const faceList = e.target.querySelector('#characterFace').querySelector("#selected");
+    const skinColorList = e.target.querySelector('#characterSkinColor').querySelector("#selected");
+    const hairList = e.target.querySelector('#characterHair').querySelector("#selected");
+    const topList = e.target.querySelector('#characterTop').querySelector("#selected");
+    const bottomsList = e.target.querySelector('#characterBottoms').querySelector("#selected");
     // best way to copy what picrew does is have a ul
     // and check which of the li has the class "selected"
 
@@ -28,12 +28,20 @@ const handleCharacter = (e, onCharacterAdded) => {
     }
 
     // Get selected items from each list
-    const face = faceList.querySelector('#selected');
-    console.log(face.data);
-    const skinColor = skinColorList.querySelector('#selected');
-    const hair = hairList.querySelector('#selected');
-    const top = topList.querySelector('#selected');
-    const bottoms = bottomsList.querySelector('#selected');
+    const face = faceList.getAttribute("data");
+    console.log("Face: " + face);
+
+    const skinColor = skinColorList.getAttribute("data");
+    console.log("Skin color: " + skinColor);
+
+    const hair = hairList.getAttribute("data");
+    console.log("Hair: " + hair);
+
+    const top = topList.getAttribute("data");
+    console.log("Top: " + top);
+
+    const bottoms = bottomsList.getAttribute("data");
+    console.log("Bottoms: " + bottoms);
 
     helper.sendPost(e.target.action, {name, face, skinColor, hair, top, bottoms}, onCharacterAdded);
     return false;
@@ -50,25 +58,45 @@ const CharacterForm = (props) => {
         >
             <label htmlFor="name">Name: </label>
             <input id="characterName" type="text" name="name" placeholder="Character Name" />
-            <ul id="characterSkinColor" name="skinColor">
-                <li id="selected" data="./assets/img/face.png"></li>
-                <li id="" data="./assets/img/domoface.png"></li>
+            <ul id="characterSkinColor" name="skinColor">Skin Color:
+                <li id="selected" data="./assets/img/face.png">
+                    <img src="./assets/img/face.png"/>
+                </li>
+                <li id="" data="./assets/img/domoface.jpeg">
+                    <img src="./assets/img/domoface.jpeg"/>
+                </li>
             </ul>
-            <ul id="characterFace" name="face">
-                <li id="selected" data="./assets/img/face.png"></li>
-                <li id="" data="./assets/img/domoface.png"></li>
+            <ul id="characterFace" name="face">Face:
+                <li id="selected" data="./assets/img/face.png">
+                    <img src="./assets/img/face.png"/>
+                </li>
+                <li id="" data="./assets/img/domoface.jpeg">
+                    <img src="./assets/img/domoface.jpeg"/>
+                </li>
             </ul>
-            <ul id="characterHair" name="hair">
-                <li id="selected" data="./assets/img/face.png"></li>
-                <li id="" data="./assets/img/domoface.png"></li>
+            <ul id="characterHair" name="hair">Hair:
+                <li id="selected" data="./assets/img/face.png">
+                    <img src="./assets/img/face.png"/>
+                </li>
+                <li id="" data="./assets/img/domoface.jpeg">
+                    <img src="./assets/img/domoface.jpeg"/>
+                </li>
             </ul>
-            <ul id="characterTop" name="top">
-                <li id="selected" data="./assets/img/face.png"></li>
-                <li id="" data="./assets/img/domoface.png"></li>
+            <ul id="characterTop" name="top">Top:
+                <li id="selected" data="./assets/img/face.png">
+                    <img src="./assets/img/face.png"/>
+                </li>
+                <li id="" data="./assets/img/domoface.jpeg">
+                    <img src="./assets/img/domoface.jpeg"/>
+                </li>
             </ul>
-            <ul id="characterBottoms" name="bottoms">
-                <li id="selected" data="./assets/img/face.png"></li>
-                <li id="" data="./assets/img/domoface.png"></li>
+            <ul id="characterBottoms" name="bottoms">Bottoms:
+                <li id="selected" data="./assets/img/face.png">
+                    <img src="./assets/img/face.png"/>
+                </li>
+                <li id="" data="./assets/img/domoface.jpeg">
+                    <img src="./assets/img/domoface.jpeg"/>
+                </li>
             </ul>
             <input className="makeCharacterSubmit" type="submit" value="Make Character" />
         </form>
