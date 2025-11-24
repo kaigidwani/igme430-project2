@@ -4,8 +4,6 @@ const { useState, useEffect } = React;
 const { createRoot } = require('react-dom/client');
 
 // TODO:
-    // - test that this works
-    //    - Resolve error with length property of characterList
     // - Replace list items with real assets
     // - Figure out CSS for the items to display them
 
@@ -66,46 +64,11 @@ const CharacterForm = (props) => {
         >
             <label htmlFor="name">Name: </label>
             <input id="characterName" type="text" name="name" placeholder="Character Name" />
-            <ul id="characterSkinColor" name="skinColor">Skin Color:
-                <li id="selected" data="./assets/img/face.png">
-                    <img src="./assets/img/face.png"/>
-                </li>
-                <li id="" data="./assets/img/domoface.jpeg">
-                    <img src="./assets/img/domoface.jpeg"/>
-                </li>
-            </ul>
-            <ul id="characterFace" name="face">Face:
-                <li id="selected" data="./assets/img/face.png">
-                    <img src="./assets/img/face.png"/>
-                </li>
-                <li id="" data="./assets/img/domoface.jpeg">
-                    <img src="./assets/img/domoface.jpeg"/>
-                </li>
-            </ul>
-            <ul id="characterHair" name="hair">Hair:
-                <li id="selected" data="./assets/img/face.png">
-                    <img src="./assets/img/face.png"/>
-                </li>
-                <li id="" data="./assets/img/domoface.jpeg">
-                    <img src="./assets/img/domoface.jpeg"/>
-                </li>
-            </ul>
-            <ul id="characterTop" name="top">Top:
-                <li id="selected" data="./assets/img/face.png">
-                    <img src="./assets/img/face.png"/>
-                </li>
-                <li id="" data="./assets/img/domoface.jpeg">
-                    <img src="./assets/img/domoface.jpeg"/>
-                </li>
-            </ul>
-            <ul id="characterBottoms" name="bottoms">Bottoms:
-                <li id="selected" data="./assets/img/face.png">
-                    <img src="./assets/img/face.png"/>
-                </li>
-                <li id="" data="./assets/img/domoface.jpeg">
-                    <img src="./assets/img/domoface.jpeg"/>
-                </li>
-            </ul>
+            <Selection name="skinColor"/>
+            <Selection name="face"/>
+            <Selection name="hair"/>
+            <Selection name="top"/>
+            <Selection name="bottoms"/>
             <input className="makeCharacterSubmit" type="submit" value="Make Character" />
         </form>
     );
@@ -158,6 +121,7 @@ const App = () => {
         <div>
             <div id="makeCharacter">
                 <CharacterForm triggerReload={() => setReloadCharacters(!reloadCharacters)} />
+                
             </div>
             <div id="characters">
                 <CharacterList characters={[]} reloadCharacters={reloadCharacters} />
@@ -166,49 +130,92 @@ const App = () => {
     );
 };
 
-const Selection = () => {
-    // Get the options
-    const faceOptions = {
-        domoface: "assets/img/characterOptions/fc_domoface.jpeg",
-        face: "assets/img/characterOptions/fc_face.png",
-    };
+const getOptions = (name) => {
+    let options = {};
 
-    // Grab the above from props given in
-    // props.faceOptions
-    // Then in App (above) call it with CharacterForm and with props defined there
-    // Create function to give back hard coded file paths for options (like faceOptions)
-    // determine which is given by a string, use that string in props for this func too
-    // in order to fill out the ul id and name
-
-    let faceOptionsHTML = "";
-
-    // Create html for options
-    for (let i = 0; i < faceOptions.length; i++) {
-        faceOptionsHTML +=
-            <li id="" data={faceOptions[i]}>
-                <img src={faceOptions[i]}/>
-            </li>;
+    switch (name){
+        case 'face':
+            options.faceOne = "assets/img/characterOptions/fc_domoface.jpeg";
+            options.faceTwo = "assets/img/characterOptions/fc_face.png";
+            break;
+        case 'skinColor':
+            options.skinColorOne = "assets/img/characterOptions/fc_domoface.jpeg";
+            options.skinColorTwo = "assets/img/characterOptions/fc_face.png";
+            break;
+        case 'hair':
+            options.hairOne = "assets/img/characterOptions/fc_domoface.jpeg";
+            options.hairTwo = "assets/img/characterOptions/fc_face.png";
+            break;
+        case 'top':
+            options.topOne = "assets/img/characterOptions/fc_domoface.jpeg";
+            options.topTwo = "assets/img/characterOptions/fc_face.png";
+            break;
+        case 'bottoms':
+            options.bottomsOne = "assets/img/characterOptions/fc_domoface.jpeg";
+            options.BottomsTwo = "assets/img/characterOptions/fc_face.png";
+            break;
+        default:
+            console.log("options were not retrieved correctly for name: " + name);
     }
 
-    for (let i = 0; i < faceOptions.length; i++) {
+    //console.log("Options recieved succesfully.")
+    return options;
+}
+
+const Selection = (props) => {
+    // Get the options
+    const options = getOptions(props.name);
+
+    let optionsHTML = "";
+    
+    const optionsLength = Object.keys(options).length;
+
+    // Create html for options
+    for (let i = 0; i < optionsLength; i++) {
+        optionsHTML +=
+            <li id="" data={options[i]}>
+                <img src={options[i]}/>
+            </li>;
+    }
+    // Replace above with a map function 
+    // Look up func to give an object and return vals as an array
+    // Run a map func on that to generate the li per item
+    // Look at domolist in domomaker
+
+    for (let i = 0; i < options.length; i++) {
         // Add event listener for click and add class, and remove others
-        faceOptions[i].addEventListener("click", () => {
+        options[i].addEventListener("click", () => {
             // Remove selected from all other options
-            for (let j = 0; j < faceOptions.length; j++) {
-                faceOptions[j].classList.remove("selected");
+            for (let j = 0; j < options.length; j++) {
+                options[j].classList.remove("selected");
             };
 
             // Add the selected class
-            faceOptions[i].classList.add("selected");
+            options[i].classList.add("selected");
         });
     }
 
-    let faceHTML =
-        <ul id="characterFace" name="face">Face:
-            {faceOptionsHTML}
+    console.log(options);
+    console.log(optionsHTML);
+
+    // Create variables for the different types of variables we need from props.name
+    const uppercaseName = Capitalize(props.name);
+    const HTMLId = `character${uppercaseName}`;
+
+    // Create the list HTML using the props.name
+    let selectionListHTML =
+        <ul id={HTMLId} name={props.name}>{uppercaseName}:
+            {optionsHTML}
         </ul>;
 
-    return faceHTML;
+    // Return finished HTML
+    return selectionListHTML;
+}
+
+// Uppercase first letter found from StackOverflow here:
+// https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
+const Capitalize = (word) => {
+    return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
 const init = () => {
