@@ -166,21 +166,29 @@ const Selection = (props) => {
     // Get the options
     const options = getOptions(props.name);
 
-    let optionsHTML = "";
+    //let optionsHTML = "";
     
     const optionsLength = Object.keys(options).length;
 
     // Create html for options
-    for (let i = 0; i < optionsLength; i++) {
+    /* for (let i = 0; i < optionsLength; i++) {
         optionsHTML +=
             <li id="" data={options[i]}>
                 <img src={options[i]}/>
             </li>;
-    }
-    // Replace above with a map function 
+    } */
+    // Replace aboveS with a map function 
     // Look up func to give an object and return vals as an array
     // Run a map func on that to generate the li per item
     // Look at domolist in domomaker
+
+    const optionsHTML = Object.values(options).map(option => {
+        return (
+            <li id="" data={option}>
+                <img src={option}/>
+            </li>
+        );
+    });
 
     for (let i = 0; i < options.length; i++) {
         // Add event listener for click and add class, and remove others
@@ -196,6 +204,7 @@ const Selection = (props) => {
     }
 
     console.log(options);
+    console.log(Object.values(options));
     console.log(optionsHTML);
 
     // Create variables for the different types of variables we need from props.name
