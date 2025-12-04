@@ -183,13 +183,14 @@ const Selection = (props) => {
     // Run a map func on that to generate the li per item
     // Look at domolist in domomaker
 
-    const optionsHTML = Object.values(options).map((option, i)  => {
-        return (
-            <li id="" data={option} onClick={}>
-                <img src={option}/>
-            </li>
-        );
-    });
+    // Temporarily commented out while it is WIP
+    // const optionsHTML = Object.values(options).map((option, i)  => {
+    //     return (
+    //         <li id="" data={option} onClick={}>
+    //             <img src={option}/>
+    //         </li>
+    //     );
+    // });
 
     // Add in below func to the on click above in the li
     // Use i to have the index of the current element and check if it is the selected index saved in this func
