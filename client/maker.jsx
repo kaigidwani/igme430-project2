@@ -165,10 +165,11 @@ const getOptions = (name) => {
 const Selection = (props) => {
     // Get the options
     const options = getOptions(props.name);
+    const [] = 0;
 
     //let optionsHTML = "";
     
-    const optionsLength = Object.keys(options).length;
+    //const optionsLength = Object.keys(options).length;
 
     // Create html for options
     /* for (let i = 0; i < optionsLength; i++) {
@@ -182,13 +183,19 @@ const Selection = (props) => {
     // Run a map func on that to generate the li per item
     // Look at domolist in domomaker
 
-    const optionsHTML = Object.values(options).map(option => {
+    const optionsHTML = Object.values(options).map((option, i)  => {
         return (
-            <li id="" data={option}>
+            <li id="" data={option} onClick={}>
                 <img src={option}/>
             </li>
         );
     });
+
+    // Add in below func to the on click above in the li
+    // Use i to have the index of the current element and check if it is the selected index saved in this func
+    // Use this syntax for var of which index is selected:
+    //   const [reloadCharacters, setReloadCharacters] = useState(false);
+
 
     for (let i = 0; i < options.length; i++) {
         // Add event listener for click and add class, and remove others
