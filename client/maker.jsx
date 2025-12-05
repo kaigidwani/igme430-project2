@@ -165,7 +165,9 @@ const getOptions = (name) => {
 const Selection = (props) => {
     // Get the options
     const options = getOptions(props.name);
-    const [] = 0;
+
+    // Set default selected option to the first one
+    const [selectedOption, selectOption] = useState(0);
 
     //let optionsHTML = "";
     
@@ -178,19 +180,26 @@ const Selection = (props) => {
                 <img src={options[i]}/>
             </li>;
     } */
-    // Replace aboveS with a map function 
+    // Replace above with a map function 
     // Look up func to give an object and return vals as an array
     // Run a map func on that to generate the li per item
     // Look at domolist in domomaker
 
-    // Temporarily commented out while it is WIP
-    // const optionsHTML = Object.values(options).map((option, i)  => {
-    //     return (
-    //         <li id="" data={option} onClick={}>
-    //             <img src={option}/>
-    //         </li>
-    //     );
-    // });
+
+    const optionsHTML = Object.values(options).map((option, i)  => {
+        const className = (i == selectedOption) ? "selected" : "";
+
+        return (
+            <li id="" data={option} class={className} onClick={
+                () => {
+                    selectOption(i);
+                }
+            }>
+                <img src={option}/>
+            </li>
+        );
+        
+    });
 
     // Add in below func to the on click above in the li
     // Use i to have the index of the current element and check if it is the selected index saved in this func
@@ -198,18 +207,18 @@ const Selection = (props) => {
     //   const [reloadCharacters, setReloadCharacters] = useState(false);
 
 
-    for (let i = 0; i < options.length; i++) {
-        // Add event listener for click and add class, and remove others
-        options[i].addEventListener("click", () => {
-            // Remove selected from all other options
-            for (let j = 0; j < options.length; j++) {
-                options[j].classList.remove("selected");
-            };
+    // for (let i = 0; i < options.length; i++) {
+    //     // Add event listener for click and add class, and remove others
+    //     options[i].addEventListener("click", () => {
+    //         // Remove selected from all other options
+    //         for (let j = 0; j < options.length; j++) {
+    //             options[j].classList.remove("selected");
+    //         };
 
-            // Add the selected class
-            options[i].classList.add("selected");
-        });
-    }
+    //         // Add the selected class
+    //         options[i].classList.add("selected");
+    //     });
+    // }
 
     console.log(options);
     console.log(Object.values(options));
