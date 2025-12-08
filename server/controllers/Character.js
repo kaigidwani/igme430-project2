@@ -11,7 +11,6 @@ const makeCharacter = async (req, res) => {
 
   const characterData = {
     name: req.body.name,
-    age: req.body.age,
     face: req.body.face,
     skinColor: req.body.skinColor,
     hair: req.body.hair,
@@ -25,7 +24,6 @@ const makeCharacter = async (req, res) => {
     await newCharacter.save();
     return res.status(201).json({
       name: newCharacter.name,
-      age: newCharacter.age,
       face: newCharacter.face,
       skinColor: newCharacter.skinColor,
       hair: newCharacter.hair,
@@ -44,7 +42,7 @@ const makeCharacter = async (req, res) => {
 const getCharacters = async (req, res) => {
   try {
     const query = { owner: req.session.account._id };
-    const docs = await Character.find(query).select('name age face skinColor hair top bottoms').lean().exec();
+    const docs = await Character.find(query).select('name face skinColor hair top bottoms').lean().exec();
 
     return res.json({ characters: docs });
   } catch (err) {

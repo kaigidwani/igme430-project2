@@ -1,9 +1,3 @@
-/* Color changes:
-#AE3838 -> #AE3838
-#66bdff -> #d74747
-#338acc -> #7e1d1d
-*/
-
 html, body {
     height: 100%;
     width: 100%;
@@ -113,6 +107,10 @@ nav:nth-child(1) {
     border: 2px solid #7e1d1d;
 }
 
+/* 
+CSS Grid help from these sources:
+ - https://css-tricks.com/snippets/css/complete-guide-grid/
+*/
 #characterOptions {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -294,6 +292,12 @@ nav:nth-child(1) {
     overflow-y: auto;
 }
 
+/* 
+CSS Grid and image overlay help from these sources:
+ - https://css-tricks.com/snippets/css/complete-guide-grid/
+ - https://bricampgomez.com/blog/how-to-overlap-images-in-css/
+ - https://stashable.wordpress.com/2018/12/30/make-a-dress-up-game-using-javascript-html-and-css/
+*/
 .characterList {
     display: grid;
     grid-template-columns: repeat(3, 3fr);
