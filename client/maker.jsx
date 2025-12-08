@@ -12,18 +12,18 @@ const handleCharacter = (e, onCharacterAdded) => {
     helper.hideError();
 
     const name = e.target.querySelector('#characterName').value;
-    
+
     const faceList = e.target.querySelector('#characterFace')
-    const skinColorList = e.target.querySelector('#characterSkinColor').querySelector("#selected");
-    const hairList = e.target.querySelector('#characterHair').querySelector("#selected");
-    const topList = e.target.querySelector('#characterTop').querySelector("#selected");
-    const bottomsList = e.target.querySelector('#characterBottoms').querySelector("#selected");
-    
-    const selectedFace = faceList.querySelector("#selected");
-    const selectedSkinColor = skinColorList.querySelector("#selected");
-    const selectedhHair = hairList.querySelector("#selected");
-    const selectedTop = topList.querySelector("#selected");
-    const selectedBottoms = bottomsList.querySelector("#selected");
+    const skinColorList = e.target.querySelector('#characterSkinColor');
+    const hairList = e.target.querySelector('#characterHair');
+    const topList = e.target.querySelector('#characterTop');
+    const bottomsList = e.target.querySelector('#characterBottoms');
+
+    const selectedFace = faceList.querySelector(".selected");
+    const selectedSkinColor = skinColorList.querySelector(".selected");
+    const selectedHair = hairList.querySelector(".selected");
+    const selectedTop = topList.querySelector(".selected");
+    const selectedBottoms = bottomsList.querySelector(".selected");
 
     // best way to copy what picrew does is have a ul
     // and check which of the li has the class "selected"
@@ -40,7 +40,7 @@ const handleCharacter = (e, onCharacterAdded) => {
     const skinColor = selectedSkinColor.getAttribute("data");
     console.log("Skin color: " + skinColor);
 
-    const hair = selectedhHair.getAttribute("data");
+    const hair = selectedHair.getAttribute("data");
     console.log("Hair: " + hair);
 
     const top = selectedTop.getAttribute("data");
@@ -177,24 +177,9 @@ const Selection = (props) => {
     // Set default selected option to the first one
     const [selectedOption, selectOption] = useState(0);
 
-    //let optionsHTML = "";
-    
-    //const optionsLength = Object.keys(options).length;
-
-    // Create html for options
-    /* for (let i = 0; i < optionsLength; i++) {
-        optionsHTML +=
-            <li id="" data={options[i]}>
-                <img src={options[i]}/>
-            </li>;
-    } */
-    // Replace above with a map function 
-    // Look up func to give an object and return vals as an array
-    // Run a map func on that to generate the li per item
-    // Look at domolist in domomaker
-
-
+    // Use map function to generate li for each item
     const optionsHTML = Object.values(options).map((option, i)  => {
+        // If it is the selected option change its class
         const className = (i == selectedOption) ? "selected" : "";
 
         return (
@@ -208,29 +193,6 @@ const Selection = (props) => {
         );
         
     });
-
-    // Add in below func to the on click above in the li
-    // Use i to have the index of the current element and check if it is the selected index saved in this func
-    // Use this syntax for var of which index is selected:
-    //   const [reloadCharacters, setReloadCharacters] = useState(false);
-
-
-    // for (let i = 0; i < options.length; i++) {
-    //     // Add event listener for click and add class, and remove others
-    //     options[i].addEventListener("click", () => {
-    //         // Remove selected from all other options
-    //         for (let j = 0; j < options.length; j++) {
-    //             options[j].classList.remove("selected");
-    //         };
-
-    //         // Add the selected class
-    //         options[i].classList.add("selected");
-    //     });
-    // }
-
-    console.log(options);
-    console.log(Object.values(options));
-    console.log(optionsHTML);
 
     // Create variables for the different types of variables we need from props.name
     const uppercaseName = Capitalize(props.name);
