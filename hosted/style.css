@@ -212,6 +212,10 @@ nav:nth-child(1) {
     padding: 10px;
     min-height:60px;
     overflow: hidden;
+    display: grid;
+    grid-template-columns: 1;
+    grid-template-rows: 2;
+    position: relative;
 }
 
 .character:hover {
@@ -232,6 +236,46 @@ img.characterFace {
     margin-top:10px;
     float:left;
 } */
+
+img.characterFace {
+    grid-column: 1;
+    grid-row: 2;
+    width: 200px;
+    height: 400px;
+    z-index: 1;
+}
+
+img.characterSkinColor {
+    grid-column: 1;
+    grid-row: 2;
+    width: 200px;
+    height: 400px;
+    z-index: 0;
+}
+
+img.characterHair {
+    grid-column: 1;
+    grid-row: 2;
+    width: 200px;
+    height: 400px;
+    z-index: 2;
+}
+
+img.characterTop {
+    grid-column: 1;
+    grid-row: 2;
+    width: 200px;
+    height: 400px;
+    z-index: 4;
+}
+
+img.characterBottoms {
+    grid-column: 1;
+    grid-row: 2;
+    width: 200px;
+    height: 400px;
+    z-index: 3;
+}
 
 h3.emptyCharacter {
     width: 400px;

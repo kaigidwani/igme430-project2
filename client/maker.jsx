@@ -135,24 +135,32 @@ const getOptions = (name) => {
 
     switch (name){
         case 'face':
-            options.faceOne = "assets/img/characterOptions/fc_domoface.jpeg";
-            options.faceTwo = "assets/img/characterOptions/fc_face.png";
+            options.faceOne = "assets/img/characterOptions/fc_1.png";
+            options.faceTwo = "assets/img/characterOptions/fc_2.png";
             break;
         case 'skinColor':
-            options.skinColorOne = "assets/img/characterOptions/fc_domoface.jpeg";
-            options.skinColorTwo = "assets/img/characterOptions/fc_face.png";
+            options.skinColorOne = "assets/img/characterOptions/sc_1.png";
+            options.skinColorTwo = "assets/img/characterOptions/sc_2.png";
+            options.skinColorThree = "assets/img/characterOptions/sc_3.png";
+            options.skinColorFour = "assets/img/characterOptions/sc_4.png";
+            options.skinColorFive = "assets/img/characterOptions/sc_5.png";
+            options.skinColorSix = "assets/img/characterOptions/sc_6.png";
+            options.skinColorSeven = "assets/img/characterOptions/sc_7.png";
+            options.skinColorEight = "assets/img/characterOptions/sc_8.png";
+            options.skinColorNine = "assets/img/characterOptions/sc_9.png";
+            options.skinColorTen = "assets/img/characterOptions/sc_10.png";
             break;
         case 'hair':
-            options.hairOne = "assets/img/characterOptions/fc_domoface.jpeg";
-            options.hairTwo = "assets/img/characterOptions/fc_face.png";
+            options.hairOne = "assets/img/characterOptions/hr_1.png";
+            options.hairTwo = "assets/img/characterOptions/hr_2.png";
             break;
         case 'top':
-            options.topOne = "assets/img/characterOptions/fc_domoface.jpeg";
-            options.topTwo = "assets/img/characterOptions/fc_face.png";
+            options.topOne = "assets/img/characterOptions/tp_1.png";
+            options.topTwo = "assets/img/characterOptions/tp_2.png";
             break;
         case 'bottoms':
-            options.bottomsOne = "assets/img/characterOptions/fc_domoface.jpeg";
-            options.BottomsTwo = "assets/img/characterOptions/fc_face.png";
+            options.bottomsOne = "assets/img/characterOptions/bt_1.png";
+            options.BottomsTwo = "assets/img/characterOptions/bt_2.png";
             break;
         default:
             console.log("options were not retrieved correctly for name: " + name);
