@@ -64,12 +64,14 @@ const CharacterForm = (props) => {
         >
             <label htmlFor="name">Name: </label>
             <input id="characterName" type="text" name="name" placeholder="Character Name" />
-            <Selection name="skinColor"/>
-            <Selection name="face"/>
-            <Selection name="hair"/>
-            <Selection name="top"/>
-            <Selection name="bottoms"/>
             <input className="makeCharacterSubmit" type="submit" value="Make Character" />
+            <div id="characterOptions">
+                <Selection name="skinColor"/>
+                <Selection name="face"/>
+                <Selection name="hair"/>
+                <Selection name="top"/>
+                <Selection name="bottoms"/>
+            </div>
         </form>
     );
 };

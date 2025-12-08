@@ -1,9 +1,16 @@
+/* Color changes:
+#AE3838 -> #AE3838
+#66bdff -> #d74747
+#338acc -> #7e1d1d
+*/
+
 html, body {
     height: 100%;
     width: 100%;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 #logo {
@@ -17,7 +24,7 @@ html, body {
 nav {
     width: 100%;
     height: 50px;
-    background-color: #55acee;
+    background-color: #AE3838;
 }
 
 nav:nth-child(1) {
@@ -38,22 +45,35 @@ nav:nth-child(1) {
     text-decoration: none;
     padding: 5px;
     border-radius: 4px;
-    background-color: #55acee;
+    background-color: #AE3838;
     transition: background-color 0.4s ease;
 }
 
 .navlink a:hover {
     transition: background-color 0.8s ease;
-    background-color: #66bdff;
+    background-color: #d74747;
+}
+
+#ads {
+    margin-right: 7%;
+}
+
+.bannerAd {
+    height: 50px;
+    margin: 16px;
+    margin-left: 85px;
+    float: right;
 }
 
 .characterForm {
-    border: 2px solid #338acc;
-    height: 35px;
-    width: 700px;
-    margin-top:0px;
+    border: 2px solid #7e1d1d;
+    border-radius: 2px;
+    height: 30px;
+    width: 28%;
+    margin: 10px;
+    margin-top: 30px;
     padding-top:10px;
-    background-color: #55acee;
+    background-color: #AE3838;
     border-bottom-right-radius: 4px;
     border-top-right-radius: 4px;
 }
@@ -66,16 +86,15 @@ nav:nth-child(1) {
     color: white;
 }
 
-.characterForm li img {
-    height: 40px;
-    width: 40;
+#characterName {
+    margin-right: 50px;
 }
 
 .makeCharacterSubmit {
     transition: background-color 0.4s ease;
     display: inline;
-    width: 90px;
-    background-color: #55acee;
+    width: 120px;
+    background-color: #AE3838;
     border-radius: 2px;
     color: white;
     text-decoration: none;
@@ -87,15 +106,85 @@ nav:nth-child(1) {
 
 .makeCharacterSubmit:hover {
     transition: background-color 0.4s ease;
-    background-color: #338acc;
+    background-color: #7e1d1d;
+}
+
+.characterForm ul {
+    border: 2px solid #7e1d1d;
+}
+
+#characterOptions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    margin: 10px;
+}
+
+#characterSkinColor {
+    grid-area: 1 / 1 / 5 / 2;
+}
+
+#characterFace {
+    grid-area: 1 / 2 / 2 / 3;
+    margin: 0px;
+    margin-top: 15px;
+}
+
+#characterHair {
+    grid-area: 2 / 2 / 3 / 3;
+    margin: 0px;
+}
+
+#characterTop {
+    grid-area: 3 / 2 / 4 / 3;
+    margin: 0px;
+}
+
+#characterBottoms {
+    grid-area: 4 / 2 / 5 / 3;
+    margin: 0px;
+    margin-bottom: 15px;
+}
+
+.characterForm li img {
+    height: 40px;
+    width: 40px;
+}
+
+.characterForm ul {
+    list-style-type: none;
+}
+
+.characterForm li {
+    width: 50px;
+    margin: 5px;
+}
+
+.characterForm .selected {
+    background-color: #c7c7c7;
+    transition: background-color 0.4s ease;
+}
+
+.characterForm li:hover {
+    transition: background-color 0.4s ease;
+    background-color: #ededed;
+}
+
+.characterForm .selected:hover {
+    transition: background-color 0.4s ease;
+    background-color: #adadad;
 }
 
 .mainForm {
-    height: 300px;
-    width: 350px;
-    margin: 0 auto;
-    padding-top: 350px;
+    width: 500px;
+    margin: 50px auto;
     font-size: 1.2em;
+    padding: 1%;
+    border: 2px solid #AE3838;
+    border-radius: 4px;
+    background-color: #d8d8d8;
 }
 
 .mainForm h3 {
@@ -104,8 +193,9 @@ nav:nth-child(1) {
 
 .mainForm label {
     display: inline-block;
-    width: 100px;
+    width: 150px;
     margin-right: 10px;
+    padding-top: 5%;
     text-align: right;
     font-size: 1.2em;
 }
@@ -117,10 +207,10 @@ nav:nth-child(1) {
     margin: 0 auto;
     margin-top: 14px;
     font-size: 1.2em;
-    width: 100px;
-    background-color: #55acee;
+    width: 200px;
+    background-color: #AE3838;
     border-radius: 2px;
-    border-color: #66acee;
+    border-color: #7e1d1d;
     padding: 3px 0px;
     color: white;
     text-decoration: none;
@@ -132,19 +222,19 @@ nav:nth-child(1) {
 
 .formSubmit:hover {
     transition: background-color 0.4s ease;
-    background-color: #338acc;
+    background-color: #7e1d1d;
 }
 
-#user, #pass, #pass2 {
+#user, #pass, #pass2, #oldpass {
     text-align: center;
     font-size: 1.1em;
-    width: 180px;
+    width: 250px;
     border-radius: 6px;
 }
 
-#user:focus, #pass:focus, #pass2:focus {
+#user:focus, #pass:focus, #pass2:focus, #oldpass:focus {
     outline: none;
-    box-shadow: 0px 0px 1px 1px #55acee;
+    box-shadow: 0px 0px 1px 1px #AE3838;
 }
 
 .hidden {
@@ -193,25 +283,33 @@ nav:nth-child(1) {
 }
 
 #characters {
-    width: 40%;
+    width: 60%;
     min-width: 400px;
-    border: 2px solid #55acee;
+    max-height: 558px;
+    border: 2px solid #AE3838;
     border-radius: 4px;
     margin: 0 auto;
-    margin-top: 100px;
+    margin-right: 100px;
+    float: right;
+    overflow-y: auto;
+}
+
+.characterList {
+    display: grid;
+    grid-template-columns: repeat(3, 3fr);
+    grid-template-rows: repeat(auto-fill, 1fr);
 }
 
 .character {
-    width: 95%;
-    margin: 0 auto;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    border: 2px solid #55acee;
+    width: 200px;
+    margin: 10 auto;
+    border: 2px solid #AE3838;
     border-radius: 4px;
-    background-color: #55acee;
+    background-color: #AE3838;
     padding: 10px;
     min-height:60px;
     overflow: hidden;
+
     display: grid;
     grid-template-columns: 1;
     grid-template-rows: 2;
@@ -222,20 +320,8 @@ nav:nth-child(1) {
     transition: border-color 0.2s ease-out;
     border-color: rgba(255,255,255, 0.8);
     transition: background-color 2.6s ease-out;
-    background-color: #66bfff;
+    background-color: #D74747;
 }
-
-/* Commenting out face icon CSS used for Domo.
-   Replace this with CSS for each component of the character.
-img.characterFace {
-    margin-left: 25px;
-    margin-right: 10px;
-    height: 50px;
-    width: 50px;
-    border-radius: 4px;
-    margin-top:10px;
-    float:left;
-} */
 
 img.characterFace {
     grid-column: 1;
@@ -289,16 +375,7 @@ h3.characterName {
     float:left;
     width: 200px;
     font-weight: bold;
-    padding-left: 65px;
-    font-size: 1.5em;
-}
-
-h3.CharacterAge {
-    float:right;
-    text-align: left;
-    width: 100px;
-    font-weight: bold;
-    padding-right: 40px;
+    padding: 5px;
     font-size: 1.5em;
 }
 
